@@ -9,6 +9,14 @@ const { title = "Z-plus" } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <script is:inline>
+      const storedTheme = localStorage.getItem("theme");
+      const systemPrefersDark = window.matchMedia?.("(prefers-color-scheme: dark)")
+        .matches;
+      const resolvedTheme =
+        storedTheme ?? (systemPrefersDark ? "dark" : "light");
+      document.documentElement.dataset.theme = resolvedTheme;
+    </script>
   </head>
   <body>
     <header>
