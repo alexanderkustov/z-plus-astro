@@ -1,6 +1,6 @@
-# Zenex Plus (Astro)
+# Z-plus (Astro)
 
-This repository contains the Zenex Plus marketing site built with [Astro](https://astro.build/).
+This repository contains the Z-plus marketing site built with [Astro](https://astro.build/).
 
 ## Getting started
 
