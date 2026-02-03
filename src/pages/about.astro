@@ -3,37 +3,281 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Z+ | About Us">
-  <section>
-    <h1>About Us</h1>
-    <h2>Overview</h2>
-    <p>
-      Z+, headquartered in the City of London, offers one-stop career training
-      services to international students in the UK. We lead the international careers training
-      sector in key performance indicators such as market share, internship placement, and customer
-      satisfaction.
-    </p>
+  <section class="about-hero">
+    <div class="hero-content">
+      <span class="hero-Eyebrow">Who We Are</span>
+      <h1 class="hero-title">
+        More Than Just a <br />
+        <span class="highlight">Career Consultancy</span>
+      </h1>
+      <p class="hero-lede">
+        Based in the heart of London, we are dedicated to bridging the gap
+        between international talent and the UK job market.
+      </p>
+    </div>
   </section>
-  <section>
-    <h2>Frequently Asked Questions (FAQs)</h2>
-    <ol>
-      <li>
-        <strong>What do you do?</strong> Z+ is an international student career business consultant.
-        We help international students in the UK with career or business advancement by offering
-        training and guidance to build their confidence and skills for securing interviews and
-        relevant careers. We also assist early-stage entrepreneurs.
-      </li>
-      <li>
-        <strong>When should we meet with you?</strong> We can help at any stage of study, but the
-        best time to contact us is in the first year of university. Early engagement allows us to
-        plan internships and career paths effectively.
-      </li>
-      <li>
-        <strong>Can you guarantee that I will get an internship I like?</strong> No one can
-        ethically guarantee a particular internship, but based on our track record, we are
-        confident in promising either an internship or a refund. Success depends on clients making
-        good progress, being prepared to accept job opportunities, and developing the necessary
-        skills.
-      </li>
-    </ol>
+
+  <section class="mission-section">
+    <div class="mission-grid">
+      <div class="mission-content">
+        <h2>Our Mission</h2>
+        <p>
+          Z+, headquartered in the City of London, offers one-stop career
+          training services to international students in the UK.
+        </p>
+        <p>
+          We lead the international careers training sector in key performance
+          indicators such as market share, internship placement, and customer
+          satisfaction.
+        </p>
+      </div>
+      <div class="mission-stat">
+        <div class="stat-card">
+          <span class="stat-number">#1</span>
+          <span class="stat-label">In Student Satisfaction</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <div class="section-header">
+      <h2>Frequently Asked Questions</h2>
+      <p>Everything you need to know about how we help.</p>
+    </div>
+
+    <div class="faq-grid">
+      <div class="faq-card">
+        <h3>What do you do?</h3>
+        <p>
+          Z+ is an international student career business consultant. We help
+          international students in the UK with career or business advancement
+          by offering training and guidance to build their confidence and skills
+          for securing interviews and relevant careers. We also assist
+          early-stage entrepreneurs.
+        </p>
+      </div>
+
+      <div class="faq-card">
+        <h3>When should we meet with you?</h3>
+        <p>
+          We can help at any stage of study, but the best time to contact us is
+          in the first year of university. Early engagement allows us to plan
+          internships and career paths effectively.
+        </p>
+      </div>
+
+      <div class="faq-card">
+        <h3>Can you guarantee that I will get an internship I like?</h3>
+        <p>
+          No one can ethically guarantee a particular internship, but based on
+          our track record, we are confident in promising either an internship
+          or a refund. Success depends on clients making good progress, being
+          prepared to accept job opportunities, and developing the necessary
+          skills.
+        </p>
+      </div>
+    </div>
   </section>
 </BaseLayout>
+
+<style>
+  .about-hero {
+    padding: 2rem 0 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Decorative background shape */
+  .about-hero::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    opacity: 0.1;
+    filter: blur(60px);
+    z-index: -1;
+  }
+
+  .hero-Eyebrow {
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .highlight {
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      transparent 10%,
+      var(--accent-color) 10%,
+      var(--accent-color) 90%,
+      transparent 90%
+    );
+    background-repeat: no-repeat;
+    background-size: 100% 30%;
+    background-position: 0 85%;
+    display: inline;
+    padding: 0 0.2em;
+  }
+
+  .hero-lede {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--fg-color);
+    opacity: 0.8;
+  }
+
+  .mission-section {
+    margin-bottom: 96px;
+  }
+
+  .mission-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .mission-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 24px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .mission-content h2::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--accent-color);
+  }
+
+  .mission-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    opacity: 0.9;
+  }
+
+  .mission-stat {
+    display: flex;
+    justify-content: center;
+  }
+
+  .stat-card {
+    background: var(--bg-color);
+    border: 2px solid var(--fg-color);
+    border-radius: 50%;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 12px 12px 0 var(--accent-color);
+    transition: transform 0.3s ease;
+  }
+
+  .stat-card:hover {
+    transform: rotate(5deg) scale(1.05);
+  }
+
+  .stat-number {
+    font-size: 5rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--fg-color);
+  }
+
+  .stat-label {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 8px;
+    max-width: 180px;
+  }
+
+  @media (min-width: 768px) {
+    .mission-grid {
+      grid-template-columns: 1.5fr 1fr;
+    }
+  }
+
+  .faq-section {
+    margin-bottom: 64px;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 48px;
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+  }
+
+  .section-header p {
+    font-size: 1.1rem;
+    opacity: 0.7;
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+  }
+
+  .faq-card {
+    background: var(--bg-color);
+    border: 2px solid var(--fg-color);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+    /* Masonry look: alternate rotation slightly */
+  }
+
+  .faq-card:nth-child(odd) {
+    border-bottom-right-radius: 48px;
+  }
+
+  .faq-card:nth-child(even) {
+    border-top-left-radius: 48px;
+  }
+
+  .faq-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 2px dashed
+      color-mix(in srgb, var(--fg-color) 20%, transparent);
+  }
+
+  .faq-card p {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+    opacity: 0.9;
+  }
+</style>
