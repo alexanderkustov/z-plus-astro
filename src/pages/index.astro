@@ -82,4 +82,36 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
     <a class="button primary" href="mailto:info@z-plus.co.uk">Schedule a consultation</a>
   </section>
+
+  <script type="module">
+    import { animate, inView, stagger } from "motion";
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!prefersReducedMotion) {
+      animate(
+        ".home-hero .hero-content > *",
+        { opacity: [0, 1], y: [18, 0] },
+        { duration: 0.7, delay: stagger(0.1), easing: "ease-out" }
+      );
+
+      animate(
+        ".home-hero .hero-grid article",
+        { opacity: [0, 1], y: [20, 0] },
+        { duration: 0.7, delay: stagger(0.12, { start: 0.25 }), easing: "ease-out" }
+      );
+
+      inView(
+        ".home-section",
+        (info) => {
+          animate(
+            info.target,
+            { opacity: [0, 1], y: [24, 0] },
+            { duration: 0.7, easing: "ease-out" }
+          );
+        },
+        { margin: "-15% 0px", once: true }
+      );
+    }
+  </script>
 </BaseLayout>
