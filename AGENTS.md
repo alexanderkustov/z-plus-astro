@@ -1,6 +1,6 @@
 ## Repository guidance
 
-This Astro site is structured around small, content-focused pages for Zenex Plus.
+This Astro site is structured around small, content-focused pages for Z-plus.
 
 ### Quick context
 - Page markup lives in `src/pages`.
