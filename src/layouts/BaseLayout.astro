@@ -1,0 +1,36 @@
+---
+import "../styles/global.css";
+
+const { title = "Zenex Plus" } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header>
+      <div class="site-header">
+        <a class="brand" href="/">Zenex Plus</a>
+        <nav aria-label="Main">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/case-studies">Case Studies</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <slot />
+      <footer>
+        <p>Zenex Plus Limited is registered in England and Wales (company registration number 09941671).</p>
+        <p>© 2016–2024. <a href="#" rel="noopener">Privacy Policy</a></p>
+        <p>Contact us: <a href="mailto:info@z-plus.co.uk">info@z-plus.co.uk</a></p>
+      </footer>
+    </main>
+  </body>
+</html>
