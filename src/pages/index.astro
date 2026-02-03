@@ -8,8 +8,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <p class="eyebrow">Z+</p>
       <h1>Global career acceleration for ambitious international talent.</h1>
       <p class="hero-lede">
-        We design bespoke coaching, placement support, and business guidance that help you land
-        elite opportunities in the UK and beyond.
+        We design bespoke coaching, placement support, and business guidance
+        that help you land elite opportunities in the UK and beyond.
       </p>
       <div class="hero-actions">
         <a class="button primary" href="/services">Explore services</a>
@@ -19,15 +19,24 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="hero-grid" aria-label="Highlights">
       <article>
         <h3>Offer-ready coaching</h3>
-        <p>Structured plans, mock interviews, and recruiter insight to secure top roles.</p>
+        <p>
+          Structured plans, mock interviews, and recruiter insight to secure top
+          roles.
+        </p>
       </article>
       <article>
         <h3>Placement guarantee</h3>
-        <p>Holiday internships matched to your goals with a proven success track record.</p>
+        <p>
+          Holiday internships matched to your goals with a proven success track
+          record.
+        </p>
       </article>
       <article>
         <h3>Founder advisory</h3>
-        <p>Market entry guidance and operational support for overseas entrepreneurs.</p>
+        <p>
+          Market entry guidance and operational support for overseas
+          entrepreneurs.
+        </p>
       </article>
     </div>
   </section>
@@ -37,20 +46,33 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="focus-grid">
       <article>
         <h3>Career positioning</h3>
-        <p>Define a compelling narrative and target roles that suit your long-term goals.</p>
+        <p>
+          Define a compelling narrative and target roles that suit your
+          long-term goals.
+        </p>
       </article>
       <article>
         <h3>Elite preparation</h3>
-        <p>Build confidence with personalized training across business, leadership, and delivery.</p>
+        <p>
+          Build confidence with personalized training across business,
+          leadership, and delivery.
+        </p>
       </article>
       <article>
         <h3>International network</h3>
-        <p>Access mentors, alumni, and partners across high-growth sectors in the UK.</p>
+        <p>
+          Access mentors, alumni, and partners across high-growth sectors in the
+          UK.
+        </p>
       </article>
       <article>
         <h3>Outcome tracking</h3>
-        <p>Stay accountable with progress dashboards, weekly check-ins, and milestone reviews.</p>
+        <p>
+          Stay accountable with progress dashboards, weekly check-ins, and
+          milestone reviews.
+        </p>
       </article>
+      <div class="focus-plus" aria-hidden="true">+</div>
     </div>
   </section>
 
@@ -59,15 +81,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="stat-grid">
       <article>
         <p class="stat">96%</p>
-        <p class="stat-label">Clients secure internships or full-time offers within six months.</p>
+        <p class="stat-label">
+          Clients secure internships or full-time offers within six months.
+        </p>
       </article>
       <article>
         <p class="stat">120+</p>
-        <p class="stat-label">Partners across finance, consulting, and technology.</p>
+        <p class="stat-label">
+          Partners across finance, consulting, and technology.
+        </p>
       </article>
       <article>
         <p class="stat">1:1</p>
-        <p class="stat-label">Dedicated coaching with curated career roadmaps.</p>
+        <p class="stat-label">
+          Dedicated coaching with curated career roadmaps.
+        </p>
       </article>
     </div>
   </section>
@@ -76,29 +104,41 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div>
       <h2>Ready to move faster?</h2>
       <p>
-        Book a strategy session and we will map the exact steps from your current position to your
-        next opportunity.
+        Book a strategy session and we will map the exact steps from your
+        current position to your next opportunity.
       </p>
     </div>
-    <a class="button primary" href="mailto:info@z-plus.co.uk">Schedule a consultation</a>
+    <a class="button primary" href="mailto:info@z-plus.co.uk"
+      >Schedule a consultation</a
+    >
   </section>
 
   <script type="module">
-    import { animate, inView, stagger } from "https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm";
+    import {
+      animate,
+      inView,
+      stagger,
+    } from "https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm";
 
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     if (!prefersReducedMotion) {
       animate(
         ".home-hero .hero-content > *",
         { opacity: [0, 1], y: [18, 0] },
-        { duration: 0.7, delay: stagger(0.1), easing: "ease-out" }
+        { duration: 0.7, delay: stagger(0.1), easing: "ease-out" },
       );
 
       animate(
         ".home-hero .hero-grid article",
         { opacity: [0, 1], y: [20, 0] },
-        { duration: 0.7, delay: stagger(0.12, { start: 0.25 }), easing: "ease-out" }
+        {
+          duration: 0.7,
+          delay: stagger(0.12, { start: 0.25 }),
+          easing: "ease-out",
+        },
       );
 
       inView(
@@ -107,10 +147,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           animate(
             info.target,
             { opacity: [0, 1], y: [24, 0] },
-            { duration: 0.7, easing: "ease-out" }
+            { duration: 0.7, easing: "ease-out" },
           );
         },
-        { margin: "-15% 0px", once: true }
+        { margin: "-15% 0px", once: true },
       );
     }
   </script>

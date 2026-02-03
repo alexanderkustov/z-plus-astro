@@ -108,7 +108,7 @@ nav a:focus {
 main {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 72px 32px 96px;
+  padding: 128px 32px 144px;
 }
 
 h1,
@@ -123,14 +123,16 @@ h3 {
 
 h1 {
   font-size: clamp(2.4rem, 5vw, 4rem);
+  margin-bottom: 2.5rem;
 }
 
 h2 {
   font-size: clamp(1.6rem, 3vw, 2.4rem);
+  margin-bottom: 2.5rem;
 }
 
 section {
-  margin-bottom: 64px;
+  margin-bottom: 128px;
 }
 
 p {
@@ -146,10 +148,56 @@ a:focus {
   color: var(--accent-color-hover);
 }
 
-footer {
-  margin-top: 64px;
+.site-footer {
+  margin: 64px 0 0 auto;
+  width: 100%;
+  max-width: 720px;
+  padding: 0 48px 32px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-main {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0 0 8px;
+  color: var(--fg-color);
+}
+
+.footer-main a {
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent-color), var(--accent-color));
+  background-size: 100% 40%;
+  background-repeat: no-repeat;
+  background-position: 0 90%;
+  transition: background-size 0.3s ease;
+  color: inherit;
+}
+
+.footer-main a:hover {
+  background-size: 100% 100%;
+  color: var(--accent-contrast);
+}
+
+.footer-copy {
+  margin: 0;
   font-size: 0.9rem;
-  color: color-mix(in srgb, var(--fg-color) 60%, transparent);
+  color: var(--fg-color);
+  opacity: 0.6;
+}
+
+.footer-legal {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--fg-color);
+  opacity: 0.4;
 }
 
 .home-hero {
@@ -245,6 +293,18 @@ footer {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
+@media (min-width: 960px) {
+  .hero-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-grid article:nth-child(1) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 10px);
+  }
+}
+
 .hero-grid article,
 .focus-grid article,
 .stat-grid article {
@@ -253,14 +313,88 @@ footer {
   border-radius: 24px;
   padding: 24px;
   box-shadow: 5px 5px 0 var(--fg-color);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hero-grid article:hover,
+.focus-grid article:hover,
+.stat-grid article:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 8px 8px 0 var(--fg-color);
 }
 
 .focus-grid {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
+.focus-plus {
+  display: none;
+  font-size: 16rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--accent-color);
+  justify-self: center;
+  align-self: center;
+  user-select: none;
+  opacity: 0.15;
+}
+
+@media (min-width: 960px) {
+  .focus-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      ". top ."
+      "left center right"
+      ". bottom .";
+    align-items: center;
+  }
+
+  .focus-plus {
+    display: block;
+    grid-area: center;
+  }
+
+  .focus-grid article:nth-child(1) {
+    grid-area: top;
+  }
+
+  .focus-grid article:nth-child(2) {
+    grid-area: left;
+  }
+
+  .focus-grid article:nth-child(3) {
+    grid-area: right;
+  }
+
+  .focus-grid article:nth-child(4) {
+    grid-area: bottom;
+  }
+}
+
 .stat-grid {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+@media (min-width: 960px) {
+  .stat-grid {
+    grid-template-columns: repeat(2, 360px);
+    grid-template-areas:
+      "stat1 ."
+      "stat2 stat3";
+  }
+
+  .stat-grid article:nth-child(1) {
+    grid-area: stat1;
+  }
+
+  .stat-grid article:nth-child(2) {
+    grid-area: stat2;
+  }
+
+  .stat-grid article:nth-child(3) {
+    grid-area: stat3;
+  }
 }
 
 .stat {
@@ -307,11 +441,38 @@ code {
 
 @media (max-width: 720px) {
   .site-header {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 20px;
+    gap: 16px;
+    overflow: hidden;
+  }
+
+  .brand {
+    flex-shrink: 0;
+  }
+
+  nav {
+    flex: 1;
+    overflow: hidden;
   }
 
   nav ul {
-    gap: 12px;
+    gap: 16px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  nav ul::-webkit-scrollbar {
+    display: none;
+  }
+
+  nav a {
+    font-size: 0.8rem;
+    white-space: nowrap;
   }
 }

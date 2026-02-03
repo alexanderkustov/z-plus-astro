@@ -3,6 +3,7 @@ import "../styles/global.css";
 
 const { title = "Z+" } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,8 +18,9 @@ const { title = "Z+" } = Astro.props;
     />
     <script is:inline>
       const storedTheme = localStorage.getItem("theme");
-      const systemPrefersDark = window.matchMedia?.("(prefers-color-scheme: dark)")
-        .matches;
+      const systemPrefersDark = window.matchMedia?.(
+        "(prefers-color-scheme: dark)",
+      ).matches;
       const resolvedTheme =
         storedTheme ?? (systemPrefersDark ? "dark" : "light");
       document.documentElement.dataset.theme = resolvedTheme;
@@ -40,10 +42,17 @@ const { title = "Z+" } = Astro.props;
     </header>
     <main>
       <slot />
-      <footer>
-        <p>Z+ Limited is registered in England and Wales (company registration number 09941671).</p>
-        <p>© 2016–2024. <a href="#" rel="noopener">Privacy Policy</a></p>
-        <p>Contact us: <a href="mailto:info@z-plus.co.uk">info@z-plus.co.uk</a></p>
+      <footer class="site-footer">
+        <p class="footer-main">
+          Contact us: <a href="mailto:info@z-plus.co.uk">info@z-plus.co.uk</a>
+        </p>
+        <p class="footer-copy">© 2016–2024 Z+ Limited</p>
+        <p class="footer-legal">
+          Z+ Limited is registered in England and Wales (No. 09941671). <a
+            href="#"
+            rel="noopener">Privacy Policy</a
+          >
+        </p>
       </footer>
     </main>
   </body>
