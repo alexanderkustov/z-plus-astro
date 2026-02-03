@@ -31,18 +31,6 @@
   --accent-contrast: #0f1115;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --bg-color: #0f1115;
-    --fg-color: #f2f2f2;
-    --accent-color: #ffcc00;
-    --accent-color-hover: #f7c600;
-    --accent-soft: rgba(255, 204, 0, 0.14);
-    --accent-contrast: #0f1115;
-  }
-}
-
 * {
   box-sizing: border-box;
 }
