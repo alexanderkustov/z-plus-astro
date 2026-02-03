@@ -1,7 +1,10 @@
 :root {
   color-scheme: light;
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family: "Nunito", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   line-height: 1.6;
+  font-optical-sizing: auto;
+  --font-body: "Nunito", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Poppins", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --bg-color: #f7f4ee;
   --fg-color: #141414;
   --accent-color: #9a6b00;
@@ -39,6 +42,10 @@ body {
   margin: 0;
   background: var(--bg-color);
   color: var(--fg-color);
+  font-family: var(--font-body);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 header {
@@ -100,6 +107,8 @@ h3 {
   margin: 0 0 1rem;
   line-height: 1.15;
   font-weight: 600;
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
 }
 
 h1 {
