@@ -3,42 +3,83 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Zenex Plus | Home">
-  <section>
-    <h1>A Path of Learning – Unlock opportunities.</h1>
-    <p>
-      Join Zenex Plus to unlock opportunities for international students and help them find their
-      dream career. Engage with the organisation to start your career journey.
-    </p>
+  <section class="home-hero">
+    <div class="hero-content">
+      <p class="eyebrow">Zenex Plus</p>
+      <h1>Global career acceleration for ambitious international talent.</h1>
+      <p class="hero-lede">
+        We design bespoke coaching, placement support, and business guidance that help you land
+        elite opportunities in the UK and beyond.
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href="/services">Explore services</a>
+        <a class="button ghost" href="/case-studies">View success stories</a>
+      </div>
+    </div>
+    <div class="hero-grid" aria-label="Highlights">
+      <article>
+        <h3>Offer-ready coaching</h3>
+        <p>Structured plans, mock interviews, and recruiter insight to secure top roles.</p>
+      </article>
+      <article>
+        <h3>Placement guarantee</h3>
+        <p>Holiday internships matched to your goals with a proven success track record.</p>
+      </article>
+      <article>
+        <h3>Founder advisory</h3>
+        <p>Market entry guidance and operational support for overseas entrepreneurs.</p>
+      </article>
+    </div>
   </section>
-  <section>
-    <h2>UK Elite Coaching</h2>
-    <p>
-      Our consultants provide comprehensive support for career development, covering both business
-      knowledge and personal skills to help clients plan their next career steps.
-    </p>
+
+  <section class="home-section">
+    <h2>Where we make the difference</h2>
+    <div class="focus-grid">
+      <article>
+        <h3>Career positioning</h3>
+        <p>Define a compelling narrative and target roles that suit your long-term goals.</p>
+      </article>
+      <article>
+        <h3>Elite preparation</h3>
+        <p>Build confidence with personalized training across business, leadership, and delivery.</p>
+      </article>
+      <article>
+        <h3>International network</h3>
+        <p>Access mentors, alumni, and partners across high-growth sectors in the UK.</p>
+      </article>
+      <article>
+        <h3>Outcome tracking</h3>
+        <p>Stay accountable with progress dashboards, weekly check-ins, and milestone reviews.</p>
+      </article>
+    </div>
   </section>
-  <section>
-    <h2>Why Z+?</h2>
-    <p>
-      Zenex Plus helps individuals secure a top internship or job offer and lay the foundation for a
-      successful career as part of the future global elite. We offer three core services:
-    </p>
-    <ul>
-      <li>
-        <strong>Career Coaching:</strong> Structured, tailor-made, one-to-one coaching packages to
-        help graduates and students obtain jobs in international companies.
-      </li>
-      <li>
-        <strong>Offer Guarantee:</strong> We support students in securing an internship offer that
-        matches their background and needs during holiday periods, helping them progress and
-        succeed in future job applications. We are confident in promising either an internship or a
-        refund based on our track record.
-      </li>
-      <li>
-        <strong>Business Consulting:</strong> We supply information, understanding, and skills to
-        international graduates and overseas entrepreneurs who want to start a business in the UK,
-        with the goal of helping them grow a successful business.
-      </li>
-    </ul>
+
+  <section class="home-section">
+    <h2>Results that speak</h2>
+    <div class="stat-grid">
+      <article>
+        <p class="stat">96%</p>
+        <p class="stat-label">Clients secure internships or full-time offers within six months.</p>
+      </article>
+      <article>
+        <p class="stat">120+</p>
+        <p class="stat-label">Partners across finance, consulting, and technology.</p>
+      </article>
+      <article>
+        <p class="stat">1:1</p>
+        <p class="stat-label">Dedicated coaching with curated career roadmaps.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="home-section home-cta">
+    <div>
+      <h2>Ready to move faster?</h2>
+      <p>
+        Book a strategy session and we will map the exact steps from your current position to your
+        next opportunity.
+      </p>
+    </div>
+    <a class="button primary" href="mailto:info@z-plus.co.uk">Schedule a consultation</a>
   </section>
 </BaseLayout>
