@@ -1,0 +1,26 @@
+---
+import { readFile } from "node:fs/promises";
+import { marked } from "marked";
+import "../styles/global.css";
+
+const content = await readFile(new URL("../../content.md", import.meta.url), "utf-8");
+const contentHtml = marked.parse(content);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zenex Plus</title>
+  </head>
+  <body>
+    <main>
+      <section>
+        <div set:html={contentHtml} />
+      </section>
+      <footer>
+        <p>Built with Astro.</p>
+      </footer>
+    </main>
+  </body>
+</html>
