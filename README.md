@@ -1,6 +1,6 @@
-# Z-plus (Astro)
+# Z+ (Astro)
 
-This repository contains the Z-plus marketing site built with [Astro](https://astro.build/).
+This repository contains the Z+ marketing site built with [Astro](https://astro.build/).
 
 ## Getting started
 
