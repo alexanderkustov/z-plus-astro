@@ -2,8 +2,45 @@
   color-scheme: light;
   font-family: "Inter", system-ui, -apple-system, sans-serif;
   line-height: 1.6;
-  background: #f6f3ef;
-  color: #121212;
+  --bg-color: #f7f4ee;
+  --fg-color: #141414;
+  --accent-color: #9a6b00;
+  --accent-color-hover: #7a5200;
+  --accent-soft: rgba(154, 107, 0, 0.14);
+  --accent-contrast: #ffffff;
+  background: var(--bg-color);
+  color: var(--fg-color);
+}
+
+:root[data-theme="light-classic"] {
+  --bg-color: #ffffff;
+  --fg-color: #111111;
+  --accent-color: #9a6b00;
+  --accent-color-hover: #7a5200;
+  --accent-soft: rgba(154, 107, 0, 0.14);
+  --accent-contrast: #ffffff;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-color: #0f1115;
+  --fg-color: #f2f2f2;
+  --accent-color: #ffcc00;
+  --accent-color-hover: #f7c600;
+  --accent-soft: rgba(255, 204, 0, 0.14);
+  --accent-contrast: #0f1115;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg-color: #0f1115;
+    --fg-color: #f2f2f2;
+    --accent-color: #ffcc00;
+    --accent-color-hover: #f7c600;
+    --accent-soft: rgba(255, 204, 0, 0.14);
+    --accent-contrast: #0f1115;
+  }
 }
 
 * {
@@ -12,12 +49,13 @@
 
 body {
   margin: 0;
-  background: #f6f3ef;
+  background: var(--bg-color);
+  color: var(--fg-color);
 }
 
 header {
-  background: #f6f3ef;
-  border-bottom: 1px solid rgba(18, 18, 18, 0.12);
+  background: var(--bg-color);
+  border-bottom: 1px solid color-mix(in srgb, var(--fg-color) 20%, transparent);
 }
 
 .site-header {
@@ -33,7 +71,7 @@ header {
 .brand {
   font-weight: 700;
   font-size: 1.1rem;
-  color: #121212;
+  color: var(--fg-color);
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -49,7 +87,7 @@ nav ul {
 }
 
 nav a {
-  color: #121212;
+  color: var(--fg-color);
   text-decoration: none;
   font-weight: 500;
   text-transform: uppercase;
@@ -59,7 +97,7 @@ nav a {
 
 nav a:hover,
 nav a:focus {
-  color: #000;
+  color: var(--accent-color);
 }
 
 main {
@@ -92,10 +130,19 @@ p {
   margin: 0 0 1rem;
 }
 
+a {
+  color: var(--accent-color);
+}
+
+a:hover,
+a:focus {
+  color: var(--accent-color-hover);
+}
+
 footer {
   margin-top: 64px;
   font-size: 0.9rem;
-  color: rgba(18, 18, 18, 0.7);
+  color: color-mix(in srgb, var(--fg-color) 60%, transparent);
 }
 
 .home-hero {
@@ -110,6 +157,7 @@ footer {
   letter-spacing: 0.28em;
   font-size: 0.75rem;
   margin-bottom: 12px;
+  color: var(--accent-color);
 }
 
 .hero-lede {
@@ -130,22 +178,41 @@ footer {
   justify-content: center;
   padding: 12px 22px;
   border-radius: 999px;
-  border: 1px solid #121212;
+  border: 1px solid var(--accent-color);
   font-weight: 600;
   text-decoration: none;
   text-transform: uppercase;
   font-size: 0.8rem;
   letter-spacing: 0.08em;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .button.primary {
-  background: #121212;
-  color: #f6f3ef;
+  background: var(--accent-color);
+  color: var(--accent-contrast);
 }
 
 .button.ghost {
   background: transparent;
-  color: #121212;
+  color: var(--accent-color);
+}
+
+.button:hover,
+.button:focus {
+  transform: translateY(-1px);
+}
+
+.button.primary:hover,
+.button.primary:focus {
+  background: var(--accent-color-hover);
+}
+
+.button.ghost:hover,
+.button.ghost:focus {
+  background: var(--accent-soft);
+  border-color: var(--accent-color-hover);
+  color: var(--accent-color-hover);
 }
 
 .hero-grid,
@@ -162,10 +229,12 @@ footer {
 .hero-grid article,
 .focus-grid article,
 .stat-grid article {
-  background: #ffffff;
+  background: var(--bg-color);
+  border: 1px solid color-mix(in srgb, var(--accent-color) 18%, transparent);
   border-radius: 24px;
   padding: 24px;
-  box-shadow: 0 18px 40px -30px rgba(18, 18, 18, 0.35);
+  box-shadow: 0 18px 40px -30px
+    color-mix(in srgb, var(--fg-color) 35%, transparent);
 }
 
 .focus-grid {
@@ -180,10 +249,11 @@ footer {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
   margin-bottom: 8px;
+  color: var(--accent-color);
 }
 
 .stat-label {
-  color: rgba(18, 18, 18, 0.7);
+  color: color-mix(in srgb, var(--fg-color) 60%, transparent);
 }
 
 .home-cta {
@@ -194,8 +264,27 @@ footer {
   gap: 24px;
   padding: 32px;
   border-radius: 32px;
-  border: 1px solid rgba(18, 18, 18, 0.15);
-  background: #ffffff;
+  border: 1px solid color-mix(in srgb, var(--accent-color) 25%, transparent);
+  background: color-mix(in srgb, var(--bg-color) 88%, var(--accent-soft));
+}
+
+::selection {
+  background: var(--fg-color);
+  color: var(--bg-color);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--fg-color);
+  opacity: 0.2;
+}
+
+.invert,
+.highlight,
+pre,
+code {
+  background: var(--fg-color);
+  color: var(--bg-color);
 }
 
 @media (max-width: 720px) {
