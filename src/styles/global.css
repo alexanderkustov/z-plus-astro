@@ -3,11 +3,12 @@
   font-family: "Nunito", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   line-height: 1.6;
   --dust-grey: #d6d6d6ff;
+  --paper-white: #ffffff;
   --bright-lemon: #ffee32ff;
   --bright-amber: #ffd100ff;
   --carbon-black: #202020ff;
   --graphite: #333533ff;
-  --bg-color: var(--dust-grey);
+  --bg-color: var(--paper-white);
   --fg-color: var(--carbon-black);
   --accent-color: var(--bright-amber);
   --accent-color-hover: var(--bright-lemon);
@@ -22,7 +23,7 @@
 }
 
 :root[data-theme="light-classic"] {
-  --bg-color: var(--dust-grey);
+  --bg-color: var(--paper-white);
   --fg-color: var(--carbon-black);
   --accent-color: var(--bright-amber);
   --accent-color-hover: var(--bright-lemon);
@@ -55,18 +56,21 @@ body {
 }
 
 header {
-  background: var(--bg-color);
-  border-bottom: 1px solid color-mix(in srgb, var(--fg-color) 20%, transparent);
+  padding: 24px;
 }
 
 .site-header {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 24px 32px;
+  padding: 12px 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+  background: var(--bg-color);
+  border: 2px solid var(--fg-color);
+  border-radius: 999px;
+  box-shadow: 5px 5px 0 var(--fg-color);
 }
 
 .brand {
@@ -155,12 +159,24 @@ footer {
   align-items: center;
 }
 
+.hero-content {
+  position: relative;
+  isolation: isolate;
+}
+
 .eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.28em;
-  font-size: 0.75rem;
-  margin-bottom: 12px;
+  position: absolute;
+  top: -0.1em;
+  left: -0.1em;
+  font-size: clamp(10rem, 25vw, 19rem);
+  font-weight: 900;
+  line-height: 1;
+  margin: 0;
   color: var(--accent-color);
+  opacity: 0.15;
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
 }
 
 .hero-lede {
@@ -233,11 +249,10 @@ footer {
 .focus-grid article,
 .stat-grid article {
   background: var(--bg-color);
-  border: 1px solid color-mix(in srgb, var(--accent-color) 18%, transparent);
+  border: 2px solid var(--fg-color);
   border-radius: 24px;
   padding: 24px;
-  box-shadow: 0 18px 40px -30px
-    color-mix(in srgb, var(--fg-color) 35%, transparent);
+  box-shadow: 5px 5px 0 var(--fg-color);
 }
 
 .focus-grid {
