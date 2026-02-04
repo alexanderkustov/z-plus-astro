@@ -85,7 +85,15 @@ const {
       <slot />
       <footer class="site-footer">
         <p class="footer-main">
-          Contact us: <a href="mailto:info@z-plus.co.uk">info@z-plus.co.uk</a>
+          Contact us:
+          <a
+            href="#"
+            class="email-link"
+            data-email-user="info"
+            data-email-domain="z-plus.co.uk"
+            data-email-text="true"
+            >Email us</a
+          >
         </p>
         <p class="footer-copy">© 2016–2024 Z+ Limited</p>
         <p class="footer-legal">
@@ -96,5 +104,18 @@ const {
         </p>
       </footer>
     </main>
+    <script is:inline>
+      const emailLinks = document.querySelectorAll(".email-link");
+      emailLinks.forEach((link) => {
+        const user = link.dataset.emailUser;
+        const domain = link.dataset.emailDomain;
+        if (!user || !domain) return;
+        const address = `${user}@${domain}`;
+        link.href = `mailto:${address}`;
+        if (link.dataset.emailText === "true") {
+          link.textContent = address;
+        }
+      });
+    </script>
   </body>
 </html>
