@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
+    "@astrojs/sitemap": "^3.7.0",
     "astro": "^4.15.0",
+    "astro-seo": "^1.1.0",
     "framer-motion": "^12.31.0",
     "marked": "^12.0.2",
     "motion": "^12.30.1",

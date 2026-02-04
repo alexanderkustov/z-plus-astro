@@ -2,7 +2,13 @@
 import "../styles/global.css";
 import ThemeToggle from "../components/ThemeToggle.astro";
 
-const { title = "Z+" } = Astro.props;
+import { SEO } from "astro-seo";
+
+const {
+  title = "Z+",
+  description = "Join the future of connectivity with Z+",
+  image = "/og-image.png",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -10,7 +16,40 @@ const { title = "Z+" } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
+    <SEO
+      title={title}
+      description={description}
+      openGraph={{
+        basic: {
+          title: title,
+          type: "website",
+          image: new URL(
+            image,
+            Astro.site || "https://z-plus.co.uk",
+          ).toString(),
+        },
+        optional: {
+          description: description,
+        },
+      }}
+      twitter={{
+        card: "summary_large_image",
+      }}
+      extend={{
+        link: [{ rel: "icon", href: "/favicon.svg" }],
+        meta: [
+          {
+            name: "twitter:image",
+            content: new URL(
+              image,
+              Astro.site || "https://z-plus.co.uk",
+            ).toString(),
+          },
+          { name: "twitter:title", content: title },
+          { name: "twitter:description", content: description },
+        ],
+      }}
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
