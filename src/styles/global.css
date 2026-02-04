@@ -4,15 +4,15 @@
   line-height: 1.6;
   --dust-grey: #d6d6d6ff;
   --paper-white: #ffffff;
-  --bright-lemon: #ffee32ff;
-  --bright-amber: #ffd100ff;
-  --carbon-black: #202020ff;
-  --graphite: #333533ff;
+  --bright-lemon: #f2d34f;
+  --bright-amber: #d6a300;
+  --carbon-black: #121212;
+  --graphite: #0d0d0d;
   --bg-color: var(--paper-white);
   --fg-color: var(--carbon-black);
   --accent-color: var(--bright-amber);
   --accent-color-hover: var(--bright-lemon);
-  --accent-soft: color-mix(in srgb, var(--bright-amber) 20%, transparent);
+  --accent-soft: color-mix(in srgb, var(--bright-amber) 18%, transparent);
   --accent-contrast: var(--carbon-black);
 
   font-optical-sizing: auto;
@@ -27,17 +27,17 @@
   --fg-color: var(--carbon-black);
   --accent-color: var(--bright-amber);
   --accent-color-hover: var(--bright-lemon);
-  --accent-soft: color-mix(in srgb, var(--bright-amber) 20%, transparent);
+  --accent-soft: color-mix(in srgb, var(--bright-amber) 18%, transparent);
   --accent-contrast: var(--carbon-black);
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
   --bg-color: var(--graphite);
-  --fg-color: var(--dust-grey);
-  --accent-color: var(--bright-amber);
-  --accent-color-hover: var(--bright-lemon);
-  --accent-soft: color-mix(in srgb, var(--bright-amber) 25%, transparent);
+  --fg-color: #f5f5f5;
+  --accent-color: var(--bright-lemon);
+  --accent-color-hover: var(--bright-amber);
+  --accent-soft: color-mix(in srgb, var(--bright-lemon) 26%, transparent);
   --accent-contrast: var(--carbon-black);
 }
 
