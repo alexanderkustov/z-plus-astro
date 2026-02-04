@@ -9,8 +9,12 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@astrojs/react": "^4.4.2",
     "astro": "^4.15.0",
+    "framer-motion": "^12.31.0",
     "marked": "^12.0.2",
-    "motion": "^12.30.1"
+    "motion": "^12.30.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
   }
 }

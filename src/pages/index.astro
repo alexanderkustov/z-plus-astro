@@ -1,11 +1,17 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ZPlusLogo from "../components/ZPlusLogo.jsx";
 ---
 
 <BaseLayout title="Z+ | Home">
   <section class="home-hero">
     <div class="hero-content">
-      <p class="eyebrow">Z+</p>
+      <div class="hero-logo-container">
+        <p class="eyebrow static-eyebrow">Z+</p>
+        <div class="animated-logo">
+          <ZPlusLogo client:load />
+        </div>
+      </div>
       <h1>Global career acceleration for ambitious international talent.</h1>
       <p class="hero-lede">
         We design bespoke coaching, placement support, and business guidance
@@ -123,6 +129,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+
+    const h1 = document.querySelector(".hero-content h1");
+    if (h1) {
+      h1.addEventListener("mouseenter", () => {
+        window.dispatchEvent(new Event("z-plus-rotate"));
+      });
+    }
 
     if (!prefersReducedMotion) {
       animate(

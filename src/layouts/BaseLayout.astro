@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import ThemeToggle from "../components/ThemeToggle.astro";
 
 const { title = "Z+" } = Astro.props;
 ---
@@ -38,6 +39,7 @@ const { title = "Z+" } = Astro.props;
             <li><a href="/case-studies">Case Studies</a></li>
           </ul>
         </nav>
+        <ThemeToggle />
       </div>
     </header>
     <main>

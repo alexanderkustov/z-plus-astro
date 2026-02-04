@@ -1,0 +1,174 @@
+---
+
+---
+
+<button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+    <div class="icon-container">
+        <svg
+            id="sun-icon"
+            class="icon sun-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg
+            id="moon-icon"
+            class="icon moon-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </div>
+</button>
+
+<style>
+    .theme-toggle {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 50%;
+        color: var(--fg-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+        width: 44px;
+        height: 44px;
+        transition: background-color 0.2s;
+    }
+
+    .theme-toggle:hover {
+        background-color: var(--accent-soft);
+    }
+
+    .icon-container {
+        position: relative;
+        width: 24px;
+        height: 24px;
+    }
+
+    .icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* Hide initially to prevent FOUC, JS will handle entrance */
+        transform-origin: center center;
+    }
+
+    /* 
+     We rely on JS for the animation, so we don't need CSS display switching 
+     except perhaps for initial state if JS is disabled (which we can't easily do 
+     without blocking render). 
+     
+     Actually, let's set initial styles based on local storage if possible or 
+     just let the script handle it immediately.
+  */
+</style>
+
+<script>
+    import { animate } from "motion";
+
+    const toggleBtn = document.getElementById("theme-toggle");
+    const sunIcon = document.getElementById("sun-icon");
+    const moonIcon = document.getElementById("moon-icon");
+
+    // Helper to get current theme
+    const getTheme = () => document.documentElement.dataset.theme || "light";
+
+    // Initial setup function to set correct icon scales without animation
+    const setupIcons = () => {
+        if (!sunIcon || !moonIcon) return;
+        const theme = getTheme();
+        if (theme === "dark") {
+            // Dark mode active: Show SUN (to switch to light), Hide MOON
+            sunIcon.style.transform = "scale(1) rotate(0deg)";
+            sunIcon.style.opacity = "1";
+            moonIcon.style.transform = "scale(0) rotate(90deg)"; // Start hidden
+            moonIcon.style.opacity = "0";
+        } else {
+            // Light mode active: Show MOON (to switch to dark), Hide SUN
+            moonIcon.style.transform = "scale(1) rotate(0deg)";
+            moonIcon.style.opacity = "1";
+            sunIcon.style.transform = "scale(0) rotate(90deg)"; // Start hidden
+            sunIcon.style.opacity = "0";
+        }
+    };
+
+    // Run immediately
+    setupIcons();
+
+    // Animation configuration
+    const slowTransition = {
+        duration: 1.5,
+        ease: "easeInOut",
+    };
+
+    const handleToggleClick = () => {
+        if (!sunIcon || !moonIcon) return;
+        const currentTheme = getTheme();
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+        // Update global state
+        document.documentElement.dataset.theme = newTheme;
+        localStorage.setItem("theme", newTheme);
+
+        // Animate
+        if (newTheme === "dark") {
+            // Switch TO Dark -> Show SUN, Hide MOON
+            // Animate MOON out
+            animate(
+                moonIcon,
+                { scale: 0, rotate: 90, opacity: 0 },
+                slowTransition,
+            );
+            // Animate SUN in
+            animate(
+                sunIcon,
+                { scale: 1, rotate: 0, opacity: 1 },
+                slowTransition,
+            );
+        } else {
+            // Switch TO Light -> Show MOON, Hide SUN
+            // Animate SUN out
+            animate(
+                sunIcon,
+                { scale: 0, rotate: 90, opacity: 0 },
+                slowTransition,
+            );
+            // Animate MOON in
+            animate(
+                moonIcon,
+                { scale: 1, rotate: 0, opacity: 1 },
+                slowTransition,
+            );
+        }
+    };
+
+    toggleBtn?.addEventListener("click", handleToggleClick);
+</script>
