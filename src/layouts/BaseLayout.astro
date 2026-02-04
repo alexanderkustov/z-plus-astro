@@ -44,7 +44,6 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
           { rel: "canonical", href: canonicalUrl },
         ],
         meta: [
-          { name: "description", content: description },
           { name: "robots", content: "index,follow" },
           { name: "googlebot", content: "index,follow,max-image-preview:large" },
           { name: "theme-color", content: "#111827" },
@@ -57,7 +56,6 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
               siteUrl,
             ).toString(),
           },
-          { name: "twitter:title", content: title },
           { name: "twitter:description", content: description },
         ],
       }}
