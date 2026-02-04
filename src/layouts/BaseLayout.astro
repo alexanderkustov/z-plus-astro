@@ -28,7 +28,7 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
           type: "website",
           image: new URL(
             image,
-            Astro.site || "https://z-plus.co.uk",
+            siteUrl,
           ).toString(),
         },
         optional: {
