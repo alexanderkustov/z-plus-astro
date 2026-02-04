@@ -9,6 +9,9 @@ const {
   description = "Join the future of connectivity with Z+",
   image = "/og-image.png",
 } = Astro.props;
+
+const siteUrl = Astro.site || "https://z-plus.co.uk";
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
 ---
 
 <!doctype html>
@@ -25,7 +28,7 @@ const {
           type: "website",
           image: new URL(
             image,
-            Astro.site || "https://z-plus.co.uk",
+            siteUrl,
           ).toString(),
         },
         optional: {
@@ -36,16 +39,23 @@ const {
         card: "summary_large_image",
       }}
       extend={{
-        link: [{ rel: "icon", href: "/favicon.svg" }],
+        link: [
+          { rel: "icon", href: "/favicon.svg" },
+          { rel: "canonical", href: canonicalUrl },
+        ],
         meta: [
+          { name: "robots", content: "index,follow" },
+          { name: "googlebot", content: "index,follow,max-image-preview:large" },
+          { name: "theme-color", content: "#111827" },
+          { property: "og:site_name", content: "Z+" },
+          { property: "og:locale", content: "en_GB" },
           {
             name: "twitter:image",
             content: new URL(
               image,
-              Astro.site || "https://z-plus.co.uk",
+              siteUrl,
             ).toString(),
           },
-          { name: "twitter:title", content: title },
           { name: "twitter:description", content: description },
         ],
       }}
