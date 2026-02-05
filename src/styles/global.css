@@ -466,6 +466,94 @@ a:focus {
   background: color-mix(in srgb, var(--bg-color) 88%, var(--accent-soft));
 }
 
+.cta-modal {
+  border: none;
+  padding: 0;
+  background: transparent;
+  width: min(520px, 92vw);
+}
+
+.cta-modal::backdrop {
+  background: color-mix(in srgb, var(--graphite) 55%, transparent);
+}
+
+.cta-modal__content {
+  display: grid;
+  gap: 16px;
+  padding: 28px;
+  border-radius: 24px;
+  border: 2px solid var(--fg-color);
+  background: var(--bg-color);
+  box-shadow: 6px 6px 0 var(--fg-color);
+}
+
+.cta-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cta-modal__eyebrow {
+  margin: 0 0 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.cta-modal__close {
+  border: 1px solid var(--fg-color);
+  background: transparent;
+  color: var(--fg-color);
+  border-radius: 999px;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.cta-modal__field {
+  display: grid;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.cta-modal__field input,
+.cta-modal__field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--fg-color) 30%, transparent);
+  background: var(--bg-color);
+  color: var(--fg-color);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+.cta-modal__field input:focus,
+.cta-modal__field textarea:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.cta-modal__privacy {
+  margin: 0;
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--fg-color) 60%, transparent);
+}
+
+.cta-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 ::selection {
   background: var(--fg-color);
   color: var(--bg-color);
