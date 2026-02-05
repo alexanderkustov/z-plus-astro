@@ -225,6 +225,28 @@ a:focus {
   z-index: 1;
 }
 
+.hero-headline {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.hero-headline h1 {
+  margin-bottom: 0;
+}
+
+.hero-doodle {
+  width: clamp(80px, 12vw, 120px);
+  height: auto;
+  stroke: var(--accent-color);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .hero-logo-container {
   position: absolute;
   top: -2em;

@@ -12,7 +12,20 @@ import ZPlusLogo from "../components/ZPlusLogo.jsx";
           <ZPlusLogo client:load />
         </div>
       </div>
-      <h1>Global career acceleration for ambitious international talent.</h1>
+      <div class="hero-headline">
+        <h1>Global career acceleration for ambitious international talent.</h1>
+        <svg
+          class="hero-doodle"
+          viewBox="0 0 120 120"
+          role="presentation"
+          aria-hidden="true"
+        >
+          <path
+            d="M20 60c0-22 18-40 40-40s40 18 40 40-18 40-40 40-40-18-40-40z"
+          />
+          <path d="M60 20v20M100 60H80M60 100V80M20 60h20" />
+        </svg>
+      </div>
       <p class="hero-lede">
         We design bespoke coaching, placement support, and business guidance
         that help you land elite opportunities in the UK and beyond.
@@ -139,6 +152,40 @@ import ZPlusLogo from "../components/ZPlusLogo.jsx";
       h1.addEventListener("mouseenter", () => {
         window.dispatchEvent(new Event("z-plus-rotate"));
       });
+    }
+
+    const heroPaths = document.querySelectorAll(".hero-doodle path");
+    if (heroPaths.length) {
+      heroPaths.forEach((path) => {
+        const length = path.getTotalLength();
+        path.style.strokeDasharray = `${length}`;
+        path.style.strokeDashoffset = prefersReducedMotion ? "0" : `${length}`;
+      });
+
+      if (!prefersReducedMotion) {
+        const animateHeroDoodle = () => {
+          heroPaths.forEach((path) => {
+            const length = path.getTotalLength();
+            path.animate(
+              [
+                { strokeDashoffset: length },
+                { strokeDashoffset: 0 },
+              ],
+              {
+                duration: 1200,
+                easing: "ease-out",
+                fill: "forwards",
+              },
+            );
+          });
+        };
+
+        animateHeroDoodle();
+        const doodle = document.querySelector(".hero-doodle");
+        if (doodle) {
+          doodle.addEventListener("mouseenter", animateHeroDoodle);
+        }
+      }
     }
 
     if (!prefersReducedMotion) {
