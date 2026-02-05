@@ -325,7 +325,8 @@ a:focus {
 
 .hero-grid,
 .focus-grid,
-.stat-grid {
+.stat-grid,
+.wins-grid {
   display: grid;
   gap: 20px;
 }
@@ -348,7 +349,8 @@ a:focus {
 
 .hero-grid article,
 .focus-grid article,
-.stat-grid article {
+.stat-grid article,
+.wins-grid article {
   background: var(--bg-color);
   border: 2px solid var(--fg-color);
   border-radius: 24px;
@@ -365,7 +367,8 @@ a:focus {
 
 .hero-grid article:hover,
 .focus-grid article:hover,
-.stat-grid article:hover {
+.stat-grid article:hover,
+.wins-grid article:hover {
   transform: translateY(-8px) scale(1.01);
   box-shadow: 8px 8px 0 var(--fg-color);
 }
@@ -420,6 +423,20 @@ a:focus {
 
 .stat-grid {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.wins-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.win-meta {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.win-label {
+  color: color-mix(in srgb, var(--fg-color) 60%, transparent);
+  margin-bottom: 0;
 }
 
 @media (min-width: 960px) {
