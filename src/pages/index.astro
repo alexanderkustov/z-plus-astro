@@ -114,13 +114,68 @@ import ZPlusLogo from "../components/ZPlusLogo.jsx";
         current position to your next opportunity.
       </p>
     </div>
-    <a
-      class="button primary email-link"
-      data-email-user="info"
-      data-email-domain="z-plus.co.uk"
-    >
+    <button class="button primary" type="button" data-modal-open="cta">
       Schedule a consultation
-    </a>
+    </button>
+    <dialog class="cta-modal" id="cta-modal" aria-labelledby="cta-modal-title">
+      <form class="cta-modal__content" method="dialog">
+        <div class="cta-modal__header">
+          <div>
+            <p class="cta-modal__eyebrow">Z+ Strategy Session</p>
+            <h3 id="cta-modal-title">Tell us what you want to achieve.</h3>
+          </div>
+          <button
+            class="cta-modal__close"
+            type="button"
+            data-modal-close
+            aria-label="Close form"
+          >
+            ✕
+          </button>
+        </div>
+        <label class="cta-modal__field">
+          Name
+          <input
+            type="text"
+            name="name"
+            autocomplete="name"
+            placeholder="Your full name"
+            required
+          />
+        </label>
+        <label class="cta-modal__field">
+          Email
+          <input
+            type="email"
+            name="email"
+            autocomplete="email"
+            placeholder="you@email.com"
+            required
+          />
+        </label>
+        <label class="cta-modal__field">
+          Goal
+          <textarea
+            name="goal"
+            rows="3"
+            placeholder="Share the role, sector, or milestone you want next."
+            required
+          ></textarea>
+        </label>
+        <p class="cta-modal__privacy">
+          We only use your details to schedule this session and never share
+          them without permission.
+        </p>
+        <div class="cta-modal__actions">
+          <button class="button ghost" type="button" data-modal-close>
+            Not now
+          </button>
+          <button class="button primary" type="submit">
+            Request session
+          </button>
+        </div>
+      </form>
+    </dialog>
   </section>
 
   <script type="module">
@@ -170,5 +225,76 @@ import ZPlusLogo from "../components/ZPlusLogo.jsx";
         { margin: "-15% 0px", once: true },
       );
     }
+
+    const modal = document.querySelector("#cta-modal");
+    const openButton = document.querySelector("[data-modal-open='cta']");
+    const closeButtons = modal?.querySelectorAll("[data-modal-close]") ?? [];
+    const focusableSelectors =
+      "a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex='-1'])";
+    let lastFocusedElement;
+
+    const getFocusable = () => {
+      if (!modal) return [];
+      return Array.from(modal.querySelectorAll(focusableSelectors)).filter(
+        (element) =>
+          !element.hasAttribute("disabled") &&
+          element.getAttribute("tabindex") !== "-1",
+      );
+    };
+
+    const openModal = () => {
+      if (!modal) return;
+      lastFocusedElement = document.activeElement;
+      modal.showModal();
+      const focusable = getFocusable();
+      if (focusable.length > 0) {
+        focusable[0].focus();
+      } else {
+        modal.focus();
+      }
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeModal = () => {
+      if (!modal) return;
+      modal.close();
+      document.body.style.overflow = "";
+      if (lastFocusedElement instanceof HTMLElement) {
+        lastFocusedElement.focus();
+      }
+    };
+
+    if (openButton) {
+      openButton.addEventListener("click", openModal);
+    }
+
+    closeButtons.forEach((button) => {
+      button.addEventListener("click", closeModal);
+    });
+
+    modal?.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    modal?.addEventListener("close", () => {
+      document.body.style.overflow = "";
+    });
+
+    modal?.addEventListener("keydown", (event) => {
+      if (event.key !== "Tab") return;
+      const focusable = getFocusable();
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
   </script>
 </BaseLayout>
