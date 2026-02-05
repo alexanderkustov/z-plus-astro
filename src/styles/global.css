@@ -466,6 +466,68 @@ a:focus {
   background: color-mix(in srgb, var(--bg-color) 88%, var(--accent-soft));
 }
 
+.case-study-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.filter-chip {
+  border: 1px solid var(--fg-color);
+  background: transparent;
+  color: var(--fg-color);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.filter-chip:hover,
+.filter-chip:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.filter-chip.is-selected {
+  background: var(--fg-color);
+  color: var(--bg-color);
+  border-color: var(--fg-color);
+}
+
+.case-study-item {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.case-study-item.is-hidden {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+
+.case-study-item.is-collapsed {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filter-chip,
+  .case-study-item {
+    transition: none;
+  }
+}
+
 ::selection {
   background: var(--fg-color);
   color: var(--bg-color);

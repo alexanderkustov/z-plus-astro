@@ -21,73 +21,99 @@ import { Image } from "astro:assets";
   </section>
 
   <section class="section-container">
+    <div class="case-study-filters" aria-label="Filter case studies">
+      <button
+        class="filter-chip is-selected"
+        type="button"
+        data-filter="all"
+        aria-pressed="true"
+      >
+        All
+      </button>
+      <button class="filter-chip" type="button" data-filter="tech">
+        Tech
+      </button>
+      <button class="filter-chip" type="button" data-filter="fintech">
+        Fintech
+      </button>
+      <button class="filter-chip" type="button" data-filter="marketing">
+        Marketing
+      </button>
+    </div>
+
     <div class="testimonials-stack">
-      <article class="testimonial-large">
-        <div class="avatar-large-wrapper">
-          <Image
-            src={p1}
-            alt="S Jie"
-            width={300}
-            height={300}
-            class="avatar-large"
-          />
-        </div>
-        <div class="testimonial-content">
-          <blockquote>
-            "I cannot believe I was placed in a great company. The valuable
-            experience gained will help with future job hunting."
-          </blockquote>
-          <footer>
-            <strong>S Jie</strong>
-            <span class="role">Frame Perfect</span>
-          </footer>
-        </div>
-      </article>
+      <div class="case-study-item" data-sector="tech">
+        <article class="testimonial-large">
+          <div class="avatar-large-wrapper">
+            <Image
+              src={p1}
+              alt="S Jie"
+              width={300}
+              height={300}
+              class="avatar-large"
+            />
+          </div>
+          <div class="testimonial-content">
+            <blockquote>
+              "I cannot believe I was placed in a great company. The valuable
+              experience gained will help with future job hunting."
+            </blockquote>
+            <footer>
+              <strong>S Jie</strong>
+              <span class="role">Frame Perfect</span>
+            </footer>
+          </div>
+        </article>
+      </div>
 
-      <article class="testimonial-large">
-        <div class="avatar-large-wrapper">
-          <Image
-            src={p2}
-            alt="J Fu"
-            width={300}
-            height={300}
-            class="avatar-large"
-          />
-        </div>
-        <div class="testimonial-content">
-          <blockquote>
-            "Thank you to the teacher who helped me secure an interview at
-            Tapoly. I received the offer and contract and can enjoy my summer."
-          </blockquote>
-          <footer>
-            <strong>J Fu</strong>
-            <span class="role">Tapoly</span>
-          </footer>
-        </div>
-      </article>
+      <div class="case-study-item" data-sector="fintech">
+        <article class="testimonial-large">
+          <div class="avatar-large-wrapper">
+            <Image
+              src={p2}
+              alt="J Fu"
+              width={300}
+              height={300}
+              class="avatar-large"
+            />
+          </div>
+          <div class="testimonial-content">
+            <blockquote>
+              "Thank you to the teacher who helped me secure an interview at
+              Tapoly. I received the offer and contract and can enjoy my summer."
+            </blockquote>
+            <footer>
+              <strong>J Fu</strong>
+              <span class="role">Tapoly</span>
+            </footer>
+          </div>
+        </article>
+      </div>
 
-      <article class="testimonial-large">
-        <div class="avatar-large-wrapper">
-          <Image
-            src={p3}
-            alt="K Zheng"
-            width={300}
-            height={300}
-            class="avatar-large"
-          />
-        </div>
-        <div class="testimonial-content">
-          <blockquote>
-            "I was lucky to obtain an offer from a UK marketing agency. The
-            career coaching session provided encouragement and confidence to
-            become a recruitment consultant."
-          </blockquote>
-          <footer>
-            <strong>K Zheng</strong>
-            <span class="role">Arora Digital</span>
-          </footer>
-        </div>
-      </article>
+      <div class="case-study-item" data-sector="marketing">
+        <article class="testimonial-large">
+          <div class="avatar-large-wrapper">
+            <Image
+              src={p3}
+              alt="K Zheng"
+              width={300}
+              height={300}
+              class="avatar-large"
+            />
+          </div>
+          <div class="testimonial-content">
+            <blockquote>
+              "I was lucky to obtain an offer from a UK marketing agency. The
+              career coaching session provided encouragement and confidence to
+              become a recruitment consultant."
+            </blockquote>
+            <footer>
+              <strong>K Zheng</strong>
+              <span class="role">Arora Digital</span>
+            </footer>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -174,6 +200,52 @@ import { Image } from "astro:assets";
     </div>
   </section>
 </BaseLayout>
+
+<script is:inline>
+  const filterButtons = document.querySelectorAll(".filter-chip");
+  const caseStudies = document.querySelectorAll(".case-study-item");
+  const animationDuration = 300;
+
+  const updateFilter = (selectedFilter) => {
+    caseStudies.forEach((item) => {
+      const matches =
+        selectedFilter === "all" || item.dataset.sector === selectedFilter;
+
+      if (matches) {
+        const wasCollapsed = item.classList.contains("is-collapsed");
+        item.classList.remove("is-collapsed");
+        if (wasCollapsed) {
+          item.classList.add("is-hidden");
+          requestAnimationFrame(() => item.classList.remove("is-hidden"));
+        }
+        return;
+      }
+
+      if (!item.classList.contains("is-hidden")) {
+        item.classList.add("is-hidden");
+      }
+
+      window.setTimeout(() => {
+        if (item.classList.contains("is-hidden")) {
+          item.classList.add("is-collapsed");
+        }
+      }, animationDuration);
+    });
+  };
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      filterButtons.forEach((chip) => {
+        chip.classList.remove("is-selected");
+        chip.setAttribute("aria-pressed", "false");
+      });
+
+      button.classList.add("is-selected");
+      button.setAttribute("aria-pressed", "true");
+      updateFilter(button.dataset.filter);
+    });
+  });
+</script>
 
 <style>
   .page-hero {
