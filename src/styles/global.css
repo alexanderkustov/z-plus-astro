@@ -466,6 +466,91 @@ a:focus {
   background: color-mix(in srgb, var(--bg-color) 88%, var(--accent-soft));
 }
 
+.celebration-note {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 20px;
+  border: 1px solid color-mix(in srgb, var(--accent-color) 35%, transparent);
+  background: color-mix(in srgb, var(--bg-color) 92%, var(--accent-soft));
+  position: relative;
+  overflow: hidden;
+  flex: 1 1 280px;
+}
+
+.celebration-note::after {
+  content: "";
+  position: absolute;
+  inset: -40% -20%;
+  background:
+    radial-gradient(circle, rgba(255, 170, 0, 0.4) 0 4px, transparent 5px),
+    radial-gradient(circle, rgba(255, 77, 109, 0.35) 0 5px, transparent 6px),
+    radial-gradient(circle, rgba(54, 162, 255, 0.35) 0 4px, transparent 6px),
+    radial-gradient(circle, rgba(95, 214, 126, 0.35) 0 5px, transparent 6px);
+  background-size: 120px 120px;
+  animation: confetti-drift 6s linear infinite;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.celebration-note > * {
+  position: relative;
+  z-index: 1;
+}
+
+.celebration-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--accent-color) 30%, var(--bg-color));
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  animation: badge-bounce 2.6s ease-in-out infinite;
+}
+
+.celebration-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.celebration-text {
+  margin: 0;
+  opacity: 0.75;
+  font-size: 0.95rem;
+}
+
+@keyframes badge-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes confetti-drift {
+  0% {
+    transform: translateX(-10%) translateY(-10%);
+  }
+  50% {
+    transform: translateX(5%) translateY(6%);
+  }
+  100% {
+    transform: translateX(-8%) translateY(12%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .celebration-badge,
+  .celebration-note::after {
+    animation: none;
+  }
+}
+
 ::selection {
   background: var(--fg-color);
   color: var(--bg-color);
