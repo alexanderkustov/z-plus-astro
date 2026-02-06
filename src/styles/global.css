@@ -466,6 +466,14 @@ a:focus {
   background: color-mix(in srgb, var(--bg-color) 88%, var(--accent-soft));
 }
 
+.cta-slots {
+  margin-top: 16px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--accent-color) 70%, var(--fg-color));
+}
+
 ::selection {
   background: var(--fg-color);
   color: var(--bg-color);
