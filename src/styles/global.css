@@ -454,6 +454,115 @@ a:focus {
   color: color-mix(in srgb, var(--fg-color) 60%, transparent);
 }
 
+.journey-section {
+  position: relative;
+}
+
+.journey-intro {
+  max-width: 32rem;
+  margin-bottom: 32px;
+  color: color-mix(in srgb, var(--fg-color) 75%, transparent);
+}
+
+.journey-timeline {
+  display: grid;
+  gap: 32px;
+}
+
+.journey-track {
+  position: relative;
+  height: 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--fg-color) 10%, transparent);
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--fg-color) 25%, transparent);
+  box-shadow: 4px 4px 0 color-mix(in srgb, var(--fg-color) 20%, transparent);
+}
+
+.journey-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--accent-color),
+    var(--accent-color-hover)
+  );
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.journey-marker {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  background: var(--bg-color);
+  border: 2px solid var(--fg-color);
+  box-shadow: 3px 3px 0 var(--fg-color);
+}
+
+.journey-steps {
+  display: grid;
+  gap: 16px;
+  align-items: center;
+}
+
+.journey-step {
+  padding: 20px 24px;
+  border-radius: 20px;
+  border: 1px solid color-mix(in srgb, var(--fg-color) 20%, transparent);
+  background: var(--bg-color);
+  box-shadow: 4px 4px 0 color-mix(in srgb, var(--fg-color) 20%, transparent);
+  opacity: 1;
+}
+
+.journey-step.is-current {
+  border-color: var(--accent-color);
+}
+
+.journey-step.is-future {
+  border-color: color-mix(in srgb, var(--accent-color) 60%, transparent);
+}
+
+.journey-label {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
+
+.journey-detail {
+  margin: 0;
+}
+
+.journey-arrow {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  justify-self: center;
+}
+
+@media (min-width: 768px) {
+  .journey-steps {
+    grid-template-columns: 1fr auto 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-fill {
+    transform: scaleX(1);
+  }
+
+  .journey-marker {
+    left: calc(100% - 28px);
+  }
+}
+
 .home-cta {
   display: flex;
   flex-wrap: wrap;
