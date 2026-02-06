@@ -86,19 +86,19 @@ import ZPlusLogo from "../components/ZPlusLogo.jsx";
     <h2>Results that speak</h2>
     <div class="stat-grid">
       <article>
-        <p class="stat">96%</p>
+        <p class="stat" data-count="96" data-suffix="%">96%</p>
         <p class="stat-label">
           Clients secure internships or full-time offers within six months.
         </p>
       </article>
       <article>
-        <p class="stat">120+</p>
+        <p class="stat" data-count="120" data-suffix="+">120+</p>
         <p class="stat-label">
           Partners across finance, consulting, and technology.
         </p>
       </article>
       <article>
-        <p class="stat">1:1</p>
+        <p class="stat" data-count="1" data-suffix=":1">1:1</p>
         <p class="stat-label">
           Dedicated coaching with curated career roadmaps.
         </p>
@@ -141,6 +141,21 @@ import ZPlusLogo from "../components/ZPlusLogo.jsx";
       });
     }
 
+    const statItems = Array.from(document.querySelectorAll(".stat[data-count]"));
+    const formatStatValue = (value, suffix) =>
+      `${Math.round(value)}${suffix || ""}`;
+    const setFinalStatValues = () => {
+      statItems.forEach((stat) => {
+        const target = Number(stat.dataset.count);
+        const suffix = stat.dataset.suffix || "";
+        stat.textContent = formatStatValue(target, suffix);
+      });
+    };
+
+    if (prefersReducedMotion) {
+      setFinalStatValues();
+    }
+
     if (!prefersReducedMotion) {
       animate(
         ".home-hero .hero-content > *",
@@ -169,6 +184,27 @@ import ZPlusLogo from "../components/ZPlusLogo.jsx";
         },
         { margin: "-15% 0px", once: true },
       );
+
+      if (statItems.length) {
+        inView(
+          ".stat-grid",
+          () => {
+            statItems.forEach((stat, index) => {
+              const target = Number(stat.dataset.count);
+              const suffix = stat.dataset.suffix || "";
+              animate(0, target, {
+                duration: 1.4,
+                delay: 0.1 * index,
+                easing: "ease-out",
+                onUpdate: (latest) => {
+                  stat.textContent = formatStatValue(latest, suffix);
+                },
+              });
+            });
+          },
+          { margin: "-20% 0px", once: true },
+        );
+      }
     }
   </script>
 </BaseLayout>
