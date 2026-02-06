@@ -82,6 +82,36 @@ import ZPlusLogo from "../components/ZPlusLogo.jsx";
     </div>
   </section>
 
+  <section class="home-section journey-section">
+    <h2>Progress visualization</h2>
+    <p class="journey-intro">
+      A guided journey from today to the exact opportunity you want.
+    </p>
+    <div class="journey-timeline" aria-label="Journey timeline">
+      <div class="journey-track" role="presentation">
+        <span class="journey-fill"></span>
+        <span class="journey-marker" aria-hidden="true"></span>
+      </div>
+      <div class="journey-steps">
+        <article class="journey-step is-current">
+          <p class="journey-label">Where you are</p>
+          <p class="journey-detail">
+            Clarifying goals, pinpointing gaps, and building a tailored action
+            plan.
+          </p>
+        </article>
+        <div class="journey-arrow" aria-hidden="true">→</div>
+        <article class="journey-step is-future">
+          <p class="journey-label">Where you&rsquo;ll be</p>
+          <p class="journey-detail">
+            Confident, offer-ready, and positioned for high-impact roles in the
+            UK and beyond.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="home-section">
     <h2>Results that speak</h2>
     <div class="stat-grid">
@@ -168,6 +198,35 @@ import ZPlusLogo from "../components/ZPlusLogo.jsx";
           );
         },
         { margin: "-15% 0px", once: true },
+      );
+
+      inView(
+        ".journey-timeline",
+        (info) => {
+          const track = info.target.querySelector(".journey-track");
+          const marker = info.target.querySelector(".journey-marker");
+          const distance = Math.max(
+            (track?.clientWidth || 0) - (marker?.offsetWidth || 0),
+            0,
+          );
+
+          animate(
+            info.target.querySelector(".journey-fill"),
+            { scaleX: [0, 1] },
+            { duration: 1.1, easing: "ease-out" },
+          );
+          animate(
+            marker,
+            { x: [0, distance] },
+            { duration: 1.1, easing: "ease-out" },
+          );
+          animate(
+            ".journey-step",
+            { opacity: [0, 1], y: [12, 0] },
+            { duration: 0.7, delay: stagger(0.15), easing: "ease-out" },
+          );
+        },
+        { margin: "-10% 0px", once: true },
       );
     }
   </script>
