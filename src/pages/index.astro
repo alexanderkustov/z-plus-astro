@@ -1,9 +1,20 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ZPlusLogo from "../components/ZPlusLogo.jsx";
+
+const share = {
+  title: "Z+ | Home",
+  description:
+    "Global career acceleration for ambitious international talent.",
+  image: "/og-image.png",
+};
 ---
 
-<BaseLayout title="Z+ | Home">
+<BaseLayout
+  title="Z+ | Home"
+  description="Global career acceleration for ambitious international talent."
+  share={share}
+>
   <section class="home-hero">
     <div class="hero-content">
       <div class="hero-logo-container">

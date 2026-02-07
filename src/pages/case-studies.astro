@@ -4,9 +4,20 @@ import p1 from "../components/p1.png";
 import p2 from "../components/p2.png";
 import p3 from "../components/p3.png";
 import { Image } from "astro:assets";
+
+const share = {
+  title: "Z+ | Case Studies",
+  description:
+    "Explore success stories from clients who accelerated their careers with Z+.",
+  image: "/og-image.png",
+};
 ---
 
-<BaseLayout title="Z+ | Case Studies">
+<BaseLayout
+  title="Z+ | Case Studies"
+  description="Explore success stories from clients who accelerated their careers with Z+."
+  share={share}
+>
   <section class="page-hero">
     <div class="hero-content">
       <h1 class="hero-title">

@@ -1,8 +1,19 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const share = {
+  title: "Z+ | Services",
+  description:
+    "Tailored coaching, placement, and advisory services for international talent.",
+  image: "/og-image.png",
+};
 ---
 
-<BaseLayout title="Z+ | Services">
+<BaseLayout
+  title="Z+ | Services"
+  description="Tailored coaching, placement, and advisory services for international talent."
+  share={share}
+>
   <section class="services-hero">
     <div class="hero-content">
       <h1 class="hero-title">

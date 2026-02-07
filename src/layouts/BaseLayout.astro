@@ -8,10 +8,23 @@ const {
   title = "Z+",
   description = "Join the future of connectivity with Z+",
   image = "/og-image.png",
+  share = {},
 } = Astro.props;
 
 const siteUrl = Astro.site || "https://z-plus.co.uk";
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const shareTitle = share.title ?? title;
+const shareDescription = share.description ?? description;
+const shareLink = share.link
+  ? new URL(share.link, siteUrl).toString()
+  : canonicalUrl;
+const shareImage = new URL(share.image ?? image, siteUrl).toString();
+const sharePayload = {
+  title: shareTitle,
+  description: shareDescription,
+  link: shareLink,
+  image: shareImage,
+};
 ---
 
 <!doctype html>
@@ -74,6 +87,71 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
       const resolvedTheme =
         storedTheme ?? (systemPrefersDark ? "dark" : "light");
       document.documentElement.dataset.theme = resolvedTheme;
+    </script>
+    <script is:inline>
+      const sharePayload = ${JSON.stringify(sharePayload)};
+      const isWeChatBrowser = /MicroMessenger/i.test(navigator.userAgent);
+      const applyWeChatShareData = async () => {
+        if (!window.wx) {
+          console.warn("WeChat JS-SDK unavailable.");
+          return;
+        }
+
+        try {
+          const response = await fetch(
+            `/api/wechat-signature?url=${encodeURIComponent(
+              window.location.href.split("#")[0],
+            )}`,
+          );
+          const payload = await response.json();
+          if (!response.ok) {
+            throw new Error(payload?.error || "Failed to load WeChat signature.");
+          }
+
+          window.wx.config({
+            debug: false,
+            appId: payload.appId,
+            timestamp: payload.timestamp,
+            nonceStr: payload.nonceStr,
+            signature: payload.signature,
+            jsApiList: [
+              "updateAppMessageShareData",
+              "updateTimelineShareData",
+            ],
+          });
+
+          window.wx.ready(() => {
+            window.wx.updateAppMessageShareData({
+              title: sharePayload.title,
+              desc: sharePayload.description,
+              link: sharePayload.link,
+              imgUrl: sharePayload.image,
+            });
+            window.wx.updateTimelineShareData({
+              title: sharePayload.title,
+              link: sharePayload.link,
+              imgUrl: sharePayload.image,
+            });
+          });
+
+          window.wx.error((error) => {
+            console.warn("WeChat JS-SDK config error:", error);
+          });
+        } catch (error) {
+          console.warn("WeChat share setup failed:", error);
+        }
+      };
+
+      if (isWeChatBrowser) {
+        const sdkScript = document.createElement("script");
+        sdkScript.src = "https://res.wx.qq.com/open/js/jweixin-1.6.0.js";
+        sdkScript.async = true;
+        sdkScript.onload = applyWeChatShareData;
+        sdkScript.onerror = () => {
+          console.warn("Failed to load WeChat JS-SDK script.");
+        };
+        document.head.appendChild(sdkScript);
+      }
     </script>
   </head>
   <body>
